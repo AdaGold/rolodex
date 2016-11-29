@@ -1,5 +1,5 @@
 # Rolodex
-Create a single-page application using Backbone.js that will track contact information for you about your friends!
+Create a single-page application using Backbone that will track contact information for you about your friends!
 
 ## Learning Goals
 - Introduction to Backbone
@@ -7,29 +7,49 @@ Create a single-page application using Backbone.js that will track contact infor
 - Continue utilizing jQuery, HTML & CSS knowledge
 - Create a responsive, dynamic look & feel
 
-## Overall Requirements
-Your application shall be a single-page application that has interactive features. It will use a local storage component, and not connect to a "real" database.
-
-Each contact should consist of:
-- Name
-- E-mail address
-- Phone Number
+## Requirements
+Your application shall be a single-page application that has interactive features, allowing the user to view a list of contacts, add new contacts into it, and view the details for a selected contact. Optionally your application will support editing the data for the selected contact.
 
 ### Wave 1
-- Create a single Backbone **Model** object, Contact, using static data
-- Utilize this Model to show a single contact card on the contact list
-  - This contact card shall show the name only and no details
+When wave 1 is complete your application should:
+- Have a Backbone **Model** subclass called `Contact`. This model should have these attributes:
+  - Name
+  - E-mail address
+  - Phone number
+- Have a single instance of `Contact` created from static data.
+- Have a Backbone **View** subclass called `ContactView`.
+- Display a single contact card on the contact list. This contact card should:
+  - Be implemented by using `Contact` and `ContactView` together.
+  - Show the name only, no other contact details.
 
 ### Wave 2
-- Add the functionality to create a **new** Contact object (we will not longer use static data)
-- Update the contact list to show all contact cards using a **Collection**
+When wave 2 is complete your application should:
+- Have a Backbone **Collection** subclass called `Rolodex`. This collection should use the model `Contact`.
+- Display a list of contact cards (as in Wave 1) using the `Rolodex` collection. This list should update when a new entry is added to collection.
+- Have a form for creating new contacts. The form should:
+  - Have inputs fields for each attribute on `Contact`.
+  - Have "Save" and "Cancel" buttons.
+  - When "Save" is clicked:
+    - Create a new `Contact` instance from the inputs.
+    - Add that new instance to the `Rolodex` collection.
+    - Clear all input fields.
+  - When "Cancel" is clicked:
+    - Clear all input fields.
 
 ### Wave 3
-- Add the functionality that will show the Contact **details**. You should be able to:
-  - Click the contact card from the contact list to see all Contact fields in a modal
-  - Close the contact card by clicking a "close" button or when the details modal loses focus
+In this wave we will implement a **modal** element for viewing the full details of a single contact selected from the contacts list.
 
-#### Optional Requirements
+A modal (or modal window) is a section of your UI that appears on top of the rest of the page, and "steals the focus" from the page beneath it. When another section of the page is clicked upon, the modal disappears. One example of a modal is the [user registration/sign-in form on imgur](http://ui-patterns.com/patterns/modal-windows/examples/16841). You can see many more examples of modals [on this webpage](http://ui-patterns.com/patterns/modal-windows/examples).
+
+When wave 3 is complete your application should:
+- Allow the user to select a `Contact` by clicking upon its card in the contacts list.
+- Have a contact details modal. It should:
+  - Be displayed when a contact card is selected.
+  - Use the provided template for contact details.
+  - Fill in the template with attributes from the selected `Contact`.
+  - Be removed from the page when any other part of the page is clicked upon.
+
+### Optional Enhancements
 - Add the functionality that will allow you to **edit** the Contact
   - This should be triggered from the contact details modal, using an edit button or some other edit method
   - When a Contact is updated, the contact list should be updated, if necessary
