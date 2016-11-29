@@ -55,18 +55,25 @@ When wave 3 is complete your application should:
   - When a Contact is updated, the contact list should be updated, if necessary
 
 ## Project Scaffold
-You have been provided with an application that has some of the structure that you will need to get started. Note that Backbone is much less structured than our Rails applications, so we are providing some of this structure for you. You would not normally have this structure when starting a new Backbone application.
+You have been provided with a project scaffold that has some of the structure you will need to get started. Note that Backbone is much less structured than our Rails applications, so we are providing some of this structure for you. You would not normally have this structure when starting a new Backbone application.
 
-Your folder structure is set up with the majority of the files that you will need to edit in the `src` folder. Each folder inside of `src` contains files that will get you started.
+This project scaffold follows the structure and naming conventions of the live code and Ada Trader exercise. HTML and CSS code are kept within the `build/` directory, and your JavaScript code is located within `src/`.
 
-`collections` folder: 
-- `rolodex.js`: will contain the code to represent a collection of Contacts
+### JavaScript code
+- `src/`
+  - `app.js`: Serves as the "entry point" and is responsible for creating whatever models and views are required to get the application running
+  - `app/`
+    - `collections/`
+      - `rolodex.js`: This collection represents an ordered list of Contact models
+    - `models/`
+      - `application.js`: This model represents the overall application
+      - `contact.js`: This model represents a single contact
+    - `views/`
+      - `application_view.js`: This view handles logic for the overall application
+      - `contact_view.js`: This view handles logic for a single contact
+      - `rolodex_view.js`: This view handles logic for the rolodex collection
 
-`models` folder:
-- `application.js`: This model represents the overall application
-- `contact.js`: This model represents a single contact
+### HTML & CSS
+In the `build/` directory we've provided an `index.html` file that has some existing "static" structure (the HTML that will not change as your application runs) and a couple of templates for the dynamic parts of the application. You should investigate this file as you begin working on the project, to get a handle on which pieces of HTML match up with what views.
 
-`views` folder:
-- `application_view.js`: This view handles logic for the overall application
-- `contact_view.js`: This view handles logic for a single contact
-- `rolodex_view.js`: This view handles logic for the rolodex collection
+The most important thing to remember in this regard is that a view should not directly interact with any page elements not contained within its "attached" element. At the same time, only a single view should interact with any given page element. This means that while your `RolodexView` may "contain" all of the contact cards, it shouldn't interact directly with their contents because a `ContactView` instance is responsible for those contents.
