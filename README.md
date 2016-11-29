@@ -77,3 +77,18 @@ This project scaffold follows the structure and naming conventions of the live c
 In the `build/` directory we've provided an `index.html` file that has some existing "static" structure (the HTML that will not change as your application runs) and a couple of templates for the dynamic parts of the application. You should investigate this file as you begin working on the project, to get a handle on which pieces of HTML match up with what views.
 
 The most important thing to remember in this regard is that a view should not directly interact with any page elements not contained within its "attached" element. At the same time, only a single view should interact with any given page element. This means that while your `RolodexView` may "contain" all of the contact cards, it shouldn't interact directly with their contents because a `ContactView` instance is responsible for those contents.
+
+## Completed Example
+To give a better sense of the end goal for the project, we're providing some screenshots and a short demo video of a completed version of the project:
+
+### Wave 1 Complete
+![Wave 1 Complete](http://i.imgur.com/8yYIHrX.png)
+
+### Wave 2 Complete
+![Wave 2 Complete](http://i.imgur.com/51FJAyN.png)
+
+### Wave 3 Complete
+![Wave 3 Complete](http://i.imgur.com/Ze3rP4A.png)
+
+### All Waves Complete
+![All Waves Complete animation](http://i.imgur.com/lpvoQme.gif)
