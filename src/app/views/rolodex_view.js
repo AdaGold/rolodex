@@ -8,23 +8,21 @@ import Rolodex from 'app/collections/rolodex';
 const RolodexView = Backbone.View.extend({
   initialize: function(options) {
     console.log("initializing the rolodex")
-// Compile a template to be shared between the individual tasks
+    // Compile a template to be shared between the individual tasks
     this.contactTemplate = _.template($('#tmpl-contact-card').html());
 
-// Keep track of the <ul> element
+    // Keep track of the <ul> element
     this.listElement = this.$('#contact-cards');
 
-// Create a ContactView for each task
+    // Create a ContactView for each task
     this.cardList = [];
     this.model.forEach(function(contact) {
       this.addContact(contact);
     }, this);
 
-
-// Keep track of our form input fields
+    // Keep track of our form input fields
     this.input = {
       name: this.$('.contact-form input[name="name"]'),
-      //this.$('.new-task input[name="title"]')
       phone: this.$('.contact-form input[name="phone"]'),
       email: this.$('.contact-form input[name="email"]')
     },
@@ -35,18 +33,18 @@ const RolodexView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("Rendering the rolodex")
+    console.log("rendering the rolodex")
 
-    this.listElement.empty(); //when we do this, it takes all of the events off of those objects as well, so we need to re-assign the events with delegateEvents in the Task View file in the render function
+    this.listElement.empty();
 
     // Loop through the data assigned to this view
     this.cardList.forEach(function(card) {
 
-      card.render();
+    card.render();
 
-      // Add that HTML to our task list
-       $("#contact-cards").append(card.render().$el);
-      //this.listElement.append(card.$el);
+      // Add that HTML to our contact list
+    $("#contact-cards").append(card.render().$el);
+
     }, this);
 
     return this; // enable chained calls
@@ -58,30 +56,28 @@ const RolodexView = Backbone.View.extend({
   },
 
   clearInput : function(event) {
-    console.log("clearInput called");
+    console.log("clearing form input");
     this.input.name.val('');
-    console.log("this.input.name in clearInput", this.input.name )
     this.input.phone.val('');
     this.input.email.val('');
   },
 
   createContact: function(event) {
-    console.log('createContact called');
+    console.log('creating a new contact');
     event.preventDefault();
 
-      var contact = new Contact(this.getInput());
-   // Add the new task to our list of tasks
-      // this.addTask(task); <-- we don't need to add the view here because of...the event that fires called "add" that we're listening for, so when that event happens, everything is updated
-      this.model.add(contact);
+    var contact = new Contact(this.getInput());
+
+    this.model.add(contact);
 
    // Clear the input form so the user can add another task
-   this.clearInput();
+    this.clearInput();
   },
 
   // Build a contact from the data entered in the form
   getInput: function() {
     console.log("getting input from the form");
-    console.log("Form input name: ", this.input);
+
     var contact = {
     name: this.input.name.val(),
     phone: this.input.phone.val(),
@@ -91,6 +87,7 @@ const RolodexView = Backbone.View.extend({
 },
 
 addContact: function(contact){
+  console.log("adding a contact");
 
   var card = new ContactView({
     model: contact,
