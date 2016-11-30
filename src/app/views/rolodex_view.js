@@ -66,42 +66,29 @@ const RolodexView = Backbone.View.extend({
   showModal : function(event) {
     console.log("showing modal")
     $("#contact-details").show();
-     //console.log($(event.target).text());
+
 //Loop through the collection and if the event.target.text == the name of a model in the collection, give me that model
-  for(var i = 0; i< this.cardList.length; i++){
-    //console.log(this.cardList[i].model.get("name"))
-    if (this.cardList[i].model.get("name") == $(event.target).text()){
-      console.log("found it!")
-      var contactOfInterest = this.cardList[i].model.attributes
-      console.log(contactOfInterest)
-      var contact = new Contact(contactOfInterest);
-      console.log(contact);
+    for(var i = 0; i< this.cardList.length; i++){
 
-      var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+      if (this.cardList[i].model.get("name") == $(event.target).text()){
+        console.log("found it!")
 
-      var contactOfInterestView = new ContactView({
-        model: contact,
-        template: contactDetailsTemplate
-      });
+        var contactOfInterest = this.cardList[i].model.attributes
 
-      $("#contact-details").html(contactOfInterestView.render().$el);
+        var contact = new Contact(contactOfInterest);
+
+
+        var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+
+        var contactOfInterestView = new ContactView({
+          model: contact,
+          template: contactDetailsTemplate
+        });
+
+        $("#contact-details").append(contactOfInterestView.render().$el);
+      }
     }
-    // else {
-    //   console.log("WTF!")
-    // }
-  }
-
-},
-
-
-    // var harry = new Contact(contactInfo[0]);
-     //var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
-    // var contactElement = $('#contact-cards');
-    // var harryView = new ContactView({
-    //   model: harry,
-    //   template: contactTemplate
-    // });
-    // $("#contact-cards").append(harryView.render().$el);
+  },
 
   createContact: function(event) {
     console.log('creating a new contact');

@@ -41,6 +41,11 @@ header {
   border-radius: 20%;
 }
 
+#close-modal{
+  float: right;
+  padding: 3%;
+}
+
 #contact-cards {
   width: 70%;
   margin: 0 auto;
