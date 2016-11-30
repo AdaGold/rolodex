@@ -51,7 +51,7 @@ const RolodexView = Backbone.View.extend({
   },
 
   events : {
-  'submit .contact-form': 'createContact',
+  'click .btn-save': 'createContact',
   'click .btn-cancel': 'clearInput',
   'click .contact-card': 'showModal',
   'click #close-modal' : 'closeModal',
