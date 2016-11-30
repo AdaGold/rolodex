@@ -27,7 +27,7 @@ const RolodexView = Backbone.View.extend({
       email: this.$('.contact-form input[name="email"]')
     },
     //These let us know if the model has been updated or if a new model has been added
-    this.listenTo(this.model, "update", this.render);
+    this.listenTo(this.model, "update", this.updateContact);
     this.listenTo(this.model, "add", this.addContact);
     this.listenTo(this.model, "remove", this.removeContact);
   },
@@ -55,30 +55,28 @@ const RolodexView = Backbone.View.extend({
   'click .btn-cancel': 'clearInput',
   'click .contact-card': 'showModal',
   'click #close-modal' : 'closeModal',
-  'click #edit' : 'updateContact'
+  'click #edit' : 'prepEdit',
+  'click .btn-update' : 'updateContact'
   },
 
-  updateContact : function(event){
-    console.log("updating contact");
+  prepEdit : function(event){
+    console.log("preparing to update");
     $(".btn-save").hide();
     $(".btn-update").show();
     $("#add-or-edit").html("Update Contact")
-    //pre-populate the form with the details of that contact
 
+    //pre-populate the form with the details of that contact
     $('.contact-form input[name="name"]').val($("#name").html()),
     $('.contact-form input[name="phone"]').val($("#phone").html()),
     $('.contact-form input[name="email"]').val($("#email").html())
 
-    console.log();
+    //intake the form info.
+    this.input = {
+      name: this.$('.contact-form input[name="name"]'),
+      phone: this.$('.contact-form input[name="phone"]'),
+      email: this.$('.contact-form input[name="email"]')
+    }
 
-    //re-intake the form info.
-
-    // re-set the values in the conact to the new input
-  },
-
-  closeModal : function(event){
-    console.log("closing modal");
-    $("#contact-details").hide();
   },
 
   clearInput : function(event) {
@@ -86,6 +84,37 @@ const RolodexView = Backbone.View.extend({
     this.input.name.val('');
     this.input.phone.val('');
     this.input.email.val('');
+  },
+
+  updateContact : function(event){
+    console.log("updating contact");
+    console.log($("#name").html())
+
+    //get the model that goes with this info
+    for(var i = 0; i< this.cardList.length; i++){
+
+      if (this.cardList[i].model.get("name") == $("#name").html()){
+        console.log("found it!")
+
+         this.cardList[i].model.set("name", this.$('.contact-form input[name="name"]').val())
+         this.cardList[i].render();
+         console.log(this.cardList[i].model.attributes.name)
+      }
+    }
+    console.log("clearing form input");
+    this.input.name.val('');
+    this.input.phone.val('');
+    this.input.email.val('');
+
+    $(".btn-save").show();
+    $(".btn-update").hide();
+    $("#add-or-edit").html("Add a New Contact")
+  },
+
+
+  closeModal : function(event){
+    console.log("closing modal");
+    $("#contact-details").hide();
   },
 
   showModal : function(event) {
@@ -100,7 +129,6 @@ const RolodexView = Backbone.View.extend({
         var contactOfInterest = this.cardList[i].model.attributes
 
         var contact = new Contact(contactOfInterest);
-
 
         var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
 
