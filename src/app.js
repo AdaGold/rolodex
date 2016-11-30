@@ -40,6 +40,7 @@ $(document).ready(function(){
     model: contacts
   })
 
+
   application.render();
   // var application = new
   // var appView = new ContactView({
