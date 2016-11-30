@@ -4,32 +4,44 @@ import Backbone from 'backbone';
 import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 import ContactView from 'app/views/contact_view';
-import Contact from 'app/models/contact'
+import Contact from 'app/models/contact';
+import Rolodex from 'app/collections/rolodex';
+import RolodexView from 'app/views/rolodex_view';
 
 var contactInfo = [
   {
     name: "Harry",
-    phoneNumber: "206-555-1234",
+    phone: "206-867-5309",
     email: "harry@hogwarts.edu"
+  },
+  {
+    name: "Ron",
+    phone: "206-555-5656",
+    email: "ron@hogwarts.edu"
   }
 ];
 
 
 $(document).ready(function() {
-  var harry = new Contact(contactInfo[0]);
 
-  var contactTemplate = _.template($('#tmpl-contact-card').html());
+//----------Wave 1: to render one contact from static data------//  
+  // var harry = new Contact(contactInfo[0]);
+  // var contactTemplate = _.template($('#tmpl-contact-card').html());
+  // var contactElement = $('#contact-cards');
+  // var harryView = new ContactView({
+  //   model: harry,
+  //   template: contactTemplate
+  // });
+  // $("#contact-cards").append(harryView.render().$el);
 
-  var contactElement = $('#contact-cards');
+  var rolodex = new Rolodex(contactInfo);
 
-  var harryView = new ContactView({
-    model: harry,
-    template: contactTemplate
-  });
-  $("#contact-cards").append(harryView.render().$el);
-  // adaContact.render();
+  var rolodexView = new RolodexView({
+    el: $('#application'),
+    model: rolodex
+  })
 
-  // contactElement.append(adaLovelace.render().$el);
+  rolodexView.render();
   //
   // var application = new Application(contactInfo);
   //
@@ -37,5 +49,5 @@ $(document).ready(function() {
   //  model: contactInfo
   // });
   //
-  // application.render();
+  // applicationView.render();
 });

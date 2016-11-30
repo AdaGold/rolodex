@@ -8,13 +8,12 @@ const ContactView = Backbone.View.extend({
   this.contact = options.contact;
   this.template = options.template;
   console.log("I made a new view for " + this.model.get("name") + "!")
-
-  //this.listenTo(this.model, "change", this.render);
   },
 
   render: function() {
 
     var html = this.template(this.model.toJSON());
+    this.delegateEvents(); 
     this.$el.html(html);
 
     return this;
