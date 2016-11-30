@@ -24,15 +24,7 @@ var contactInfo = [
 
 $(document).ready(function() {
 
-//----------Wave 1: to render one contact from static data------//  
-  // var harry = new Contact(contactInfo[0]);
-  // var contactTemplate = _.template($('#tmpl-contact-card').html());
-  // var contactElement = $('#contact-cards');
-  // var harryView = new ContactView({
-  //   model: harry,
-  //   template: contactTemplate
-  // });
-  // $("#contact-cards").append(harryView.render().$el);
+$("#contact-details").hide();
 
   var rolodex = new Rolodex(contactInfo);
 
@@ -50,4 +42,15 @@ $(document).ready(function() {
   // });
   //
   // applicationView.render();
+
+
+  //----------Wave 1: to render one contact from static data------//
+    // var harry = new Contact(contactInfo[0]);
+    // var contactTemplate = _.template($('#tmpl-contact-card').html());
+    // var contactElement = $('#contact-cards');
+    // var harryView = new ContactView({
+    //   model: harry,
+    //   template: contactTemplate
+    // });
+    // $("#contact-cards").append(harryView.render().$el);
 });

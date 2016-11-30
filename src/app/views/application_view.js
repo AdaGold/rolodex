@@ -4,6 +4,7 @@ import _ from 'underscore';
 
 const ApplicationView = Backbone.View.extend({
   initialize: function(options) {
+      
   },
 
   render: function() {

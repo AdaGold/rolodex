@@ -52,7 +52,8 @@ const RolodexView = Backbone.View.extend({
 
   events : {
   'submit .contact-form': 'createContact',
-  'click .btn-cancel': 'clearInput'
+  'click .btn-cancel': 'clearInput',
+  'click .contact-card': 'showModal'
   },
 
   clearInput : function(event) {
@@ -61,6 +62,46 @@ const RolodexView = Backbone.View.extend({
     this.input.phone.val('');
     this.input.email.val('');
   },
+
+  showModal : function(event) {
+    console.log("showing modal")
+    //$("#contact-details").html("hi!")
+    $("#contact-details").show();
+     //console.log($(event.target).text());
+//Loop through the collection and if the event.target.text == the name of a model in the collection, give me that model
+  for(var i = 0; i< this.cardList.length; i++){
+    //console.log(this.cardList[i].model.get("name"))
+    if (this.cardList[i].model.get("name") == $(event.target).text()){
+      console.log("found it!")
+      var contactOfInterest = this.cardList[i].model.attributes
+    }
+    // else {
+    //   console.log("WTF!")
+    // }
+  }
+  console.log(contactOfInterest)
+  var contact = new Contact(contactOfInterest);
+  console.log(contact);
+
+  var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+
+  var contactOfInterestView = new ContactView({
+    model: contact,
+    template: contactDetailsTemplate
+  });
+
+  $("#contact-details").html(contactOfInterestView.render().$el);
+},
+
+
+    // var harry = new Contact(contactInfo[0]);
+     //var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+    // var contactElement = $('#contact-cards');
+    // var harryView = new ContactView({
+    //   model: harry,
+    //   template: contactTemplate
+    // });
+    // $("#contact-cards").append(harryView.render().$el);
 
   createContact: function(event) {
     console.log('creating a new contact');
@@ -75,13 +116,13 @@ const RolodexView = Backbone.View.extend({
   },
 
   // Build a contact from the data entered in the form
-  getInput: function() {
-    console.log("getting input from the form");
+getInput: function() {
+  console.log("getting input from the form");
 
-    var contact = {
-    name: this.input.name.val(),
-    phone: this.input.phone.val(),
-    email: this.input.email.val()
+  var contact = {
+  name: this.input.name.val(),
+  phone: this.input.phone.val(),
+  email: this.input.email.val()
   };
   return contact;
 },
