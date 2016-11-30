@@ -25,14 +25,11 @@ const RolodexView = Backbone.View.extend({
     this.cardList = [];
 
     options.model.forEach(function(contact){
-      var card = new ContactView({
-        el: this.listElement,
-        model: contact
-      });
-      this.cardList.push(card);
+      this.addContact(contact);
     }, this);
 
-    this.listenTo(this.model, "add", this.addTask);
+    this.listenTo(this.model, "add", this.addContact);
+    this.listenTo(this.model, "update", this.render);
   },
 
   events: {
@@ -44,7 +41,7 @@ const RolodexView = Backbone.View.extend({
     var contact = new Contact(this.getInput());
 
     this.model.add(contact);
-
+    
   },
   getInput: function(){
     var contact = {
@@ -54,8 +51,14 @@ const RolodexView = Backbone.View.extend({
     }
     return contact;
   },
-  addTask: function(){
-    console.log('add task works')
+  addContact: function(contact){
+    var cardList = this.cardList;
+    var card = new ContactView({
+      el: this.listElement,
+      model: contact
+    });
+    cardList.push(card);
+    console.log(cardList);
   },
   render: function(){
 
