@@ -12,7 +12,7 @@ const Contact = Backbone.Model.extend({
   },
 
   initialize: function(options){
-    console.log("Contact created with: " + this.get("name"));
+    console.log("I made a new model for " + this.get("name") + "!");
   },
 
 

@@ -16,19 +16,17 @@ var contactInfo = [
 
 
 $(document).ready(function() {
-  var adaLovelace = new Contact(contactInfo[0]);
-  console.log("ContactInfo", contactInfo[0])
-
+  var harry = new Contact(contactInfo[0]);
 
   var contactTemplate = _.template($('#tmpl-contact-card').html());
 
   var contactElement = $('#contact-cards');
 
-  var adaContact = new ContactView({
-    model: adaLovelace,
+  var harryView = new ContactView({
+    model: harry,
     template: contactTemplate
   });
-  $("#contact-cards").append(adaContact.render().$el);
+  $("#contact-cards").append(harryView.render().$el);
   // adaContact.render();
 
   // contactElement.append(adaLovelace.render().$el);
