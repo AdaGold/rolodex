@@ -53,7 +53,13 @@ const RolodexView = Backbone.View.extend({
   events : {
   'submit .contact-form': 'createContact',
   'click .btn-cancel': 'clearInput',
-  'click .contact-card': 'showModal'
+  'click .contact-card': 'showModal',
+  'click #close-modal' : 'closeModal'
+  },
+
+  closeModal : function(event){
+    console.log("closing modal");
+    $("#contact-details").hide();
   },
 
   clearInput : function(event) {
@@ -63,10 +69,13 @@ const RolodexView = Backbone.View.extend({
     this.input.email.val('');
   },
 
+  clearModal : function(event){
+    $("#contact-details").html("");
+  },
+
   showModal : function(event) {
     console.log("showing modal")
     $("#contact-details").show();
-
 //Loop through the collection and if the event.target.text == the name of a model in the collection, give me that model
     for(var i = 0; i< this.cardList.length; i++){
 
@@ -85,7 +94,7 @@ const RolodexView = Backbone.View.extend({
           template: contactDetailsTemplate
         });
 
-        $("#contact-details").append(contactOfInterestView.render().$el);
+        $("#contact-details").html(contactOfInterestView.render().$el);
       }
     }
   },
