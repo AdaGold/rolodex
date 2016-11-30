@@ -17,7 +17,7 @@ const ContactView = Backbone.View.extend({
 
 
     var html = this.template(this.model.toJSON());
-    this.$el.html(html);
+    this.$el.append(html);
 
     return this;
   },
