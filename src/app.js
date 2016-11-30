@@ -18,6 +18,11 @@ var contactInfo = [
     name: "Ron",
     phone: "206-555-5656",
     email: "ron@hogwarts.edu"
+  },
+  {
+    name: "Hermione",
+    phone: "286-729-0064",
+    email: "hermione@hogwarts.edu"
   }
 ];
 
@@ -25,6 +30,7 @@ var contactInfo = [
 $(document).ready(function() {
 
 $("#contact-details").hide();
+$(".btn-update").hide();
 
   var rolodex = new Rolodex(contactInfo);
 

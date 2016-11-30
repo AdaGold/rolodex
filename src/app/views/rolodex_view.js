@@ -54,7 +54,26 @@ const RolodexView = Backbone.View.extend({
   'submit .contact-form': 'createContact',
   'click .btn-cancel': 'clearInput',
   'click .contact-card': 'showModal',
-  'click #close-modal' : 'closeModal'
+  'click #close-modal' : 'closeModal',
+  'click #edit' : 'updateContact'
+  },
+
+  updateContact : function(event){
+    console.log("updating contact");
+    $(".btn-save").hide();
+    $(".btn-update").show();
+    $("#add-or-edit").html("Update Contact")
+    //pre-populate the form with the details of that contact
+
+    $('.contact-form input[name="name"]').val($("#name").html()),
+    $('.contact-form input[name="phone"]').val($("#phone").html()),
+    $('.contact-form input[name="email"]').val($("#email").html())
+
+    console.log();
+
+    //re-intake the form info.
+
+    // re-set the values in the conact to the new input
   },
 
   closeModal : function(event){

@@ -46,6 +46,11 @@ header {
   padding: 3%;
 }
 
+#edit{
+  float: left;
+  padding: 3%;
+}
+
 #contact-cards {
   width: 70%;
   margin: 0 auto;
