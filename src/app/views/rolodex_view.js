@@ -65,7 +65,6 @@ const RolodexView = Backbone.View.extend({
 
   showModal : function(event) {
     console.log("showing modal")
-    //$("#contact-details").html("hi!")
     $("#contact-details").show();
      //console.log($(event.target).text());
 //Loop through the collection and if the event.target.text == the name of a model in the collection, give me that model
@@ -74,23 +73,24 @@ const RolodexView = Backbone.View.extend({
     if (this.cardList[i].model.get("name") == $(event.target).text()){
       console.log("found it!")
       var contactOfInterest = this.cardList[i].model.attributes
+      console.log(contactOfInterest)
+      var contact = new Contact(contactOfInterest);
+      console.log(contact);
+
+      var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+
+      var contactOfInterestView = new ContactView({
+        model: contact,
+        template: contactDetailsTemplate
+      });
+
+      $("#contact-details").html(contactOfInterestView.render().$el);
     }
     // else {
     //   console.log("WTF!")
     // }
   }
-  console.log(contactOfInterest)
-  var contact = new Contact(contactOfInterest);
-  console.log(contact);
 
-  var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
-
-  var contactOfInterestView = new ContactView({
-    model: contact,
-    template: contactDetailsTemplate
-  });
-
-  $("#contact-details").html(contactOfInterestView.render().$el);
 },
 
 
