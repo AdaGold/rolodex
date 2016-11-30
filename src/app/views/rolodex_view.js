@@ -69,10 +69,6 @@ const RolodexView = Backbone.View.extend({
     this.input.email.val('');
   },
 
-  clearModal : function(event){
-    $("#contact-details").html("");
-  },
-
   showModal : function(event) {
     console.log("showing modal")
     $("#contact-details").show();
