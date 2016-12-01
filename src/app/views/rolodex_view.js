@@ -55,7 +55,6 @@ const RolodexView = Backbone.View.extend({
   'click .btn-save': 'createContact',
   'click .btn-cancel': 'clearInput',
   'click .contact-card': 'showModal',
-  'click #close-modal' : 'closeModal',
   'click #edit' : 'prepEdit',
   'click .btn-update' : 'updateContact'
   },
@@ -110,16 +109,10 @@ const RolodexView = Backbone.View.extend({
     $("#add-or-edit").html("Add a New Contact")
 
     //The modal view needs to listen for the model updates and re-render
-    
+
     //contactOfInterestView.listenTo(contactOfInterest, 'change', contactOfInterestView.render()))
 
     this.clearInput()
-  },
-
-
-  closeModal : function(event){
-    console.log("closing modal");
-    $("#contact-details").hide();
   },
 
   showModal : function(event) {
