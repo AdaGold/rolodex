@@ -154,6 +154,15 @@ const RolodexView = Backbone.View.extend({
   getInput: function() {
     console.log("getting input from the form");
 
+    //Handles the case where someone tries to enter a contact that has the same name as another contact already in the database...
+    for(var i = 0; i< this.cardList.length; i++){
+
+      if (this.cardList[i].model.get("name") == this.input.name.val()){
+        alert("You've already stored a contact with that name. Try again, maybe this time with a last initial.")
+      }
+    }
+
+
     if (this.input.name.val() != "") {
       var contact = {
       name: this.input.name.val(),
