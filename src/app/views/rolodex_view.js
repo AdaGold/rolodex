@@ -115,8 +115,9 @@ const RolodexView = Backbone.View.extend({
     $("#contact-details").show();
 //Loop through the collection and if the event.target.text == the name of a model in the collection, give me that model
     for(var i = 0; i< this.cardList.length; i++){
-
-      if (this.cardList[i].model.get("name") == $(event.target).text()){
+      console.log(event.target);
+      if (this.cardList[i].model.get("name") == $(event.target).text() ||
+          this.cardList[i].model.get("name") == $(event.target).children('h4').text()){
         console.log("found it!")
 
         var contactOfInterest = this.cardList[i].model.attributes
@@ -153,12 +154,14 @@ const RolodexView = Backbone.View.extend({
   getInput: function() {
     console.log("getting input from the form");
 
-    var contact = {
-    name: this.input.name.val(),
-    phone: this.input.phone.val(),
-    email: this.input.email.val()
-    };
+    if (this.input.name.val() != "") {
+      var contact = {
+      name: this.input.name.val(),
+      phone: this.input.phone.val(),
+      email: this.input.email.val()
+      };
     return contact;
+    }
   },
 
   addContact: function(contact){
