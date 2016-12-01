@@ -16,8 +16,11 @@ const ContactView = Backbone.View.extend({
     this.delegateEvents();
     this.$el.html(html);
 
+    this.listenTo(this.model, "change", this.render);
     return this;
   }
 });
+
+
 
 export default ContactView;

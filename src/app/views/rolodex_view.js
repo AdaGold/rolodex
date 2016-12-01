@@ -27,7 +27,8 @@ const RolodexView = Backbone.View.extend({
       email: this.$('.contact-form input[name="email"]')
     },
     //These let us know if the model has been updated or if a new model has been added
-    this.listenTo(this.model, "update", this.updateContact);
+
+    this.listenTo(this.model, "update", this.render);
     this.listenTo(this.model, "add", this.addContact);
     this.listenTo(this.model, "remove", this.removeContact);
   },
@@ -97,18 +98,22 @@ const RolodexView = Backbone.View.extend({
         console.log("found it!")
 
          this.cardList[i].model.set("name", this.$('.contact-form input[name="name"]').val())
-         this.cardList[i].render();
+         this.cardList[i].model.set("email", this.$('.contact-form input[name="email"]').val())
+         this.cardList[i].model.set("phone", this.$('.contact-form input[name="phone"]').val())
          console.log(this.cardList[i].model.attributes.name)
+         this.render();
       }
     }
-    console.log("clearing form input");
-    this.input.name.val('');
-    this.input.phone.val('');
-    this.input.email.val('');
 
     $(".btn-save").show();
     $(".btn-update").hide();
     $("#add-or-edit").html("Add a New Contact")
+
+    //The modal view needs to listen for the model updates and re-render
+    
+    //contactOfInterestView.listenTo(contactOfInterest, 'change', contactOfInterestView.render()))
+
+    this.clearInput()
   },
 
 
@@ -127,6 +132,8 @@ const RolodexView = Backbone.View.extend({
         console.log("found it!")
 
         var contactOfInterest = this.cardList[i].model.attributes
+        console.log(this.cardList[i].model)
+        console.log(this.cardList[i].model.attributes)
 
         var contact = new Contact(contactOfInterest);
 
@@ -149,7 +156,7 @@ const RolodexView = Backbone.View.extend({
     var contact = new Contact(this.getInput());
 
     this.model.add(contact);
-
+    this.render()
    // Clear the input form so the user can add another task
     this.clearInput();
   },
