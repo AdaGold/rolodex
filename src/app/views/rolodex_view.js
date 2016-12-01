@@ -52,11 +52,11 @@ const RolodexView = Backbone.View.extend({
   },
 
   events : {
-  'click .btn-save': 'createContact',
-  'click .btn-cancel': 'clearInput',
-  'click .contact-card': 'showModal',
-  'click #edit' : 'prepEdit',
-  'click .btn-update' : 'updateContact'
+    'click .btn-save': 'createContact',
+    'click .btn-cancel': 'clearInput',
+    'click .contact-card': 'showModal',
+    'click #edit' : 'prepEdit',
+    'click .btn-update' : 'updateContact'
   },
 
   prepEdit : function(event){
@@ -76,7 +76,6 @@ const RolodexView = Backbone.View.extend({
       phone: this.$('.contact-form input[name="phone"]'),
       email: this.$('.contact-form input[name="email"]')
     }
-
   },
 
   clearInput : function(event) {
@@ -108,10 +107,6 @@ const RolodexView = Backbone.View.extend({
     $(".btn-update").hide();
     $("#add-or-edit").html("Add a New Contact")
 
-    //The modal view needs to listen for the model updates and re-render
-
-    //contactOfInterestView.listenTo(contactOfInterest, 'change', contactOfInterestView.render()))
-
     this.clearInput()
   },
 
@@ -125,8 +120,8 @@ const RolodexView = Backbone.View.extend({
         console.log("found it!")
 
         var contactOfInterest = this.cardList[i].model.attributes
-        console.log(this.cardList[i].model)
-        console.log(this.cardList[i].model.attributes)
+        //console.log(this.cardList[i].model)
+        //console.log(this.cardList[i].model.attributes)
 
         var contact = new Contact(contactOfInterest);
 
@@ -155,42 +150,27 @@ const RolodexView = Backbone.View.extend({
   },
 
   // Build a contact from the data entered in the form
-getInput: function() {
-  console.log("getting input from the form");
+  getInput: function() {
+    console.log("getting input from the form");
 
-  var contact = {
-  name: this.input.name.val(),
-  phone: this.input.phone.val(),
-  email: this.input.email.val()
-  };
-  return contact;
-},
+    var contact = {
+    name: this.input.name.val(),
+    phone: this.input.phone.val(),
+    email: this.input.email.val()
+    };
+    return contact;
+  },
 
-addContact: function(contact){
-  console.log("adding a contact");
+  addContact: function(contact){
+    console.log("adding a contact");
 
-  var card = new ContactView({
-    model: contact,
-    template: this.contactTemplate
-  });
-  this.cardList.push(card)
-},
+    var card = new ContactView({
+      model: contact,
+      template: this.contactTemplate
+    });
+    this.cardList.push(card)
+  },
 
-removeContact : function(model){
-  //When remove event fires, it sends the model, the collection it was removed from and the options you set
-  //Loop through all of the views in cardList and see if the model associated with that model is the same as the model that was passed in from the remove event
-  var filteredList = [];
-
-    for(var i = 0; i< this.cardList.length; i++){
-      if (this.cardList[i].model == model) {
-        console.log("found it!")
-      }
-      else {
-      filteredList.push(this.cardList[i])
-      }
-    }
-  this.cardList = filteredList;
-}
 });
 
 export default RolodexView;

@@ -41,11 +41,6 @@ header {
   border-radius: 20%;
 }
 
-#close-modal{
-  float: right;
-  padding: 3%;
-}
-
 #edit{
   float: left;
   padding: 3%;
