@@ -90,10 +90,6 @@ const RolodexView = Backbone.View.extend({
       }, this);
 
 
-
-      // this.listElement.append(card.render().$el);
-      // }, this);
-
     return this;
 
   }

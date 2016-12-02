@@ -24,16 +24,11 @@ var contactList = [{
 }
 ];
 
-// var application = new Application();
 
-// var ContactView = new ContactView({
-//   el: '#application',
-//   model: contact
-// });
 
 $(document).ready(function(){
   // var contact = new Contact(contactList[0]);
-
+  $("#contact-details").hide();
   var contacts = new Rolodex(contactList)
   var application = new RolodexView({
     el: $('#application'),
@@ -42,11 +37,16 @@ $(document).ready(function(){
 
 
   application.render();
-  // var application = new
-  // var appView = new ContactView({
-  //   // el: $('#contact-cards'),
-  //   // model: contact
-  // });
-  //
-  // appView.render()
+});
+
+$(document).mouseup(function (e)
+{
+    var container = $("#contact-details");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.hide();
+        $("#contact-details").unbind( 'click', clickDocument );
+    }
 });

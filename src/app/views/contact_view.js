@@ -28,7 +28,7 @@ const ContactView = Backbone.View.extend({
   showDetails: function(){
     var innerText = this.detailsTemplate({name: this.model.get("name"), email: this.model.get("email"), phone: this.model.get("phone") });
     this.element.html(innerText);
-    $("#contact-details").toggle();
+    $("#contact-details").show();
     console.log(this.model)
   },
   render: function(){
