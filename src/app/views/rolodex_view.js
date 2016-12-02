@@ -87,7 +87,6 @@ const RolodexView = Backbone.View.extend({
 
   updateContact : function(event){
     console.log("updating contact");
-    console.log($("#name").html())
 
     //get the model that goes with this info
     for(var i = 0; i< this.cardList.length; i++){
@@ -98,7 +97,6 @@ const RolodexView = Backbone.View.extend({
          this.cardList[i].model.set("name", this.$('.contact-form input[name="name"]').val())
          this.cardList[i].model.set("email", this.$('.contact-form input[name="email"]').val())
          this.cardList[i].model.set("phone", this.$('.contact-form input[name="phone"]').val())
-         console.log(this.cardList[i].model.attributes.name)
          this.render();
       }
     }
@@ -161,7 +159,6 @@ const RolodexView = Backbone.View.extend({
         alert("You've already stored a contact with that name. Try again, maybe this time with a last initial.")
       }
     }
-
 
     if (this.input.name.val() != "") {
       var contact = {
