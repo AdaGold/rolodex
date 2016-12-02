@@ -23,27 +23,32 @@ const RolodexView = Backbone.View.extend({
     };
 
     this.listElement = $('#contact-cards');
+
+
     this.cardList = [];
 
-    options.model.forEach(function(contact){
+    this.model.forEach(function(contact){
       this.addContact(contact);
     }, this);
 
     this.listenTo(this.model, "add", this.addContact);
     this.listenTo(this.model, "update", this.render);
+    // this.listenTo(this.model, "update", console.log('at update'));
   },
 
   events: {
     'click #save-button': 'createContact',
+
     'click #clear-button':  'clearInput'
   },
 
   createContact: function(event){
-    event.preventDefault();
-    var contact = new Contact(this.getInput());
+    // event.preventDefault();
 
+    var contact = new Contact(this.getInput());
     this.model.add(contact);
     this.clearInput();
+
   },
   getInput: function(){
     var contact = {
@@ -54,15 +59,20 @@ const RolodexView = Backbone.View.extend({
     return contact;
   },
   addContact: function(contact){
+    console.log('at add')
     var cardList = this.cardList;
+
     var card = new ContactView({
-      el: this.listElement,
       model: contact
     });
+
     cardList.push(card);
 
+    // this.model.update();
+    console.log('just pushed');
   },
   clearInput: function(event){
+    console.log('at clear')
     this.input.name.val("");
     this.input.email.val("");
     this.input.phone.val("");
@@ -74,8 +84,15 @@ const RolodexView = Backbone.View.extend({
 
     this.cardList.forEach(function(card){
 
-      this.listElement.append(card.render().$el);
+      card.render();
+
+      this.listElement.append(card.$el);
       }, this);
+
+
+
+      // this.listElement.append(card.render().$el);
+      // }, this);
 
     return this;
 
