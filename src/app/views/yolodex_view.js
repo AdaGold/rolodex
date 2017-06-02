@@ -10,7 +10,7 @@ var YolodexView = Backbone.View.extend({
           this.listenTo(this.model, 'update', this.render);
      },
      render: function() {
-     this.$('#contact-cards').empty();
+     this.$('main').empty();
           var that = this;
           this.model.each(function(contact) {
                var contactView = new ContactView({

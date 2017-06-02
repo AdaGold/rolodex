@@ -36,16 +36,15 @@ header {
   left: 30%;
   background-color: #538ca3;
   text-align: center;
-  border: 1em solid white;
+  border: .04em solid white;
   margin-left: 20%;
-  border-radius: 20%;
 }
 
 #contact-cards {
-  width: 70%;
-  margin: 0 auto;
-  float: right;
-  text-align: center;
+     width: 70%;
+     margin: 0 auto;
+     float: right;
+     text-align: center;
 }
 
 .contact-card {
@@ -53,7 +52,7 @@ header {
   padding: 2%;
   margin: 2%;
   background-color: #fff;
-  border-radius: 2%;
+  border: .1em solid #538ca3;
 }
 
 .contact-card:hover {
