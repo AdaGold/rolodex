@@ -7,7 +7,7 @@ const ContactView = Backbone.View.extend({
      initialize: function( params ) {
      this.template = params.template;
      this.listenTo( this.model, 'change', this.render );
-     // this.$el.addClass('task-item column column-block')
+     this.$el.addClass('row align-center')
 },
 render: function() {
      var compiledTemplate = this.template(this.model.toJSON());

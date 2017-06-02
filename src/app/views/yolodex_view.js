@@ -12,40 +12,39 @@ var YolodexView = Backbone.View.extend({
      render: function() {
      this.$('main').empty();
           var that = this;
-          this.model.each(function(contact) {
-               var contactView = new ContactView({
+          this.model.each(function( contact ) {
+               var firstContactView = new ContactView({
                     model: contact,
                     template: that.template,
                     tagName: 'li'
                });
-          that.$('#contact-cards').append(contactView.render().$el);
+          that.$('#contact-cards').append(firstContactView.render().$el);
      });
           return this;
      },
      events: {
-          // 'click #add-task': 'addTask'
+          'click #saveContact': 'saveContact'
      },
-     // getFormData: function() {
-     //      var formTitle = this.$('#title').val();
-     //      this.$('#title').val('');
-     //
-     //      var formDescription = this.$('#description').val();
-     //      this.$('#description').val('');
-     //
-     //      var formCompleted = this.$('#completed-checkbox').is(":checked");
-     //      this.$('#completed-checkbox').prop('checked', false);
-     //
-     //      return {
-     //           title: formTitle,
-     //           description: formDescription,
-     //           completed: formCompleted
-     //      };
-     // },
-     // addTask: function() {
-     //      var task = new Task(this.getFormData());
-     //
-     //      this.model.add(task);
-     // }
+     getFormData: function() {
+          var formName = this.$('#name').val();
+          this.$('#name').val('');
+
+          var formEmail = this.$('#email').val();
+          this.$('#email').val('');
+
+          var formPhone = this.$('#phone').val();
+          this.$('#phone').val('');
+
+          return {
+               name: formName,
+               email: formEmail,
+               phone: formPhone
+          };
+     },
+     saveContact: function() {
+          var firstContact = new Contact(this.getFormData());
+          this.model.add(firstContact);
+     }
 
 });
 

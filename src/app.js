@@ -23,14 +23,31 @@ var contactData = [
 
 var firstYolodex = new Yolodex(contactData);
 
+var getFormData = function() {
+     var formName = $('#name').val();
+     $('#name').val('');
+
+     var formEmail = $('#email').val();
+     $('#email').val('');
+
+     var formPhone = $('#phone').val();
+     $('#phone').val('');
+
+     return {
+          title: formTitle,
+          description: formDescription,
+          completed: formCompleted
+     };
+};
+
+
 $( document ).ready( function() {
 
-     var yolodexView = new YolodexView({
+     var firstYolodexView = new YolodexView({
           model: firstYolodex,
           template: _.template($('#tmpl-contact-card').html()),
           el: 'main'
      });
 
-     yolodexView.render();
-
+     firstYolodexView.render();
 });
