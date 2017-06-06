@@ -1,11 +1,12 @@
 import Backbone from 'backbone';
 
-const ApplicationView = Backbone.View.extend({
+const RolodexView = Backbone.View.extend({
   initialize: function() {
     this.render();
   },
 
   render: function() {
+    // your code here
     return this;
   }
 });
