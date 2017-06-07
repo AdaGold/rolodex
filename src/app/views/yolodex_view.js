@@ -1,7 +1,5 @@
 import Backbone from 'backbone';
-import _ from 'underscore';
-import $ from 'jquery';
-import Contact from '../models/contact.js';
+import Contact from 'app/models/contact.js'
 import ContactView from './contact_view.js'
 
 var YolodexView = Backbone.View.extend({
@@ -10,7 +8,7 @@ var YolodexView = Backbone.View.extend({
           this.listenTo(this.model, 'update', this.render);
      },
      render: function() {
-     this.$('main').empty();
+     this.$('#contact-cards').empty();
           var that = this;
           this.model.each(function( contact ) {
                var firstContactView = new ContactView({
@@ -23,9 +21,11 @@ var YolodexView = Backbone.View.extend({
           return this;
      },
      events: {
-          'click #saveContact': 'saveContact'
+          'click .btn-save': 'saveContact',
+          'click .btn-cancel': 'cancelContact'
      },
      getFormData: function() {
+          console.log('testing123');
           var formName = this.$('#name').val();
           this.$('#name').val('');
 
@@ -42,8 +42,12 @@ var YolodexView = Backbone.View.extend({
           };
      },
      saveContact: function() {
+          console.log( 'testing321' );
           var firstContact = new Contact(this.getFormData());
           this.model.add(firstContact);
+     },
+     cancelContact: function() {
+          this.$('.form-field').val('');
      }
 
 });

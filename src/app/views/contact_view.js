@@ -10,21 +10,18 @@ const ContactView = Backbone.View.extend({
      this.$el.addClass('row align-center')
 },
 render: function() {
-     var compiledTemplate = this.template(this.model.toJSON());
-     this.$el.html( compiledTemplate );
+     var renderedTemplate = this.template(this.model.toJSON());
+     this.$el.html( renderedTemplate );
      return this;
 },
 events: {
-     // 'click button.alert': 'deleteTask',
-     // 'click button.success': 'completeTask'
+     'click .contact-card': 'expandContact',
 },
-deleteContact: function( event ) {
-     this.model.destroy();
-},
-// completeTask: function(e) {
-//      console.log('test');
-//      this.model.toggleComplete();
-// }
+expandContact: function(event) {
+     console.log('testing123');
+     console.log($('#contact-details'));
+     $('#contact-details').toggleClass('hidden')
+}
 });
 
 export default ContactView;
