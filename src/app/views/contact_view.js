@@ -7,7 +7,7 @@ const ContactView = Backbone.View.extend({
      initialize: function( params ) {
      this.template = params.template;
      this.listenTo( this.model, 'change', this.render );
-     this.$el.addClass('row align-center')
+     this.$el.addClass( 'row align-center' )
 },
 render: function() {
      var renderedTemplate = this.template(this.model.toJSON());
@@ -26,7 +26,6 @@ events: {
 expandContact: function( event ) {
      $( '#contact-details' ).toggleClass( 'hidden' );
      this.renderExpanded();
-     console.log(this.model);
 }
 });
 

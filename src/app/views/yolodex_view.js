@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+import $ from 'jquery';
 import Contact from 'app/models/contact.js'
 import ContactView from './contact_view.js'
 
@@ -22,7 +23,8 @@ var YolodexView = Backbone.View.extend({
      },
      events: {
           'click .btn-save': 'saveContact',
-          'click .btn-cancel': 'cancelContact'
+          'click .btn-cancel': 'cancelContact',
+          // 'click main': 'contractContact'
      },
      getFormData: function() {
           console.log('testing123');
@@ -48,6 +50,9 @@ var YolodexView = Backbone.View.extend({
      },
      cancelContact: function() {
           this.$('.form-field').val('');
+     },
+     contractContact: function( event ) {
+          // $( '#contact-details' ).addClass( 'hidden' );
      }
 
 });
