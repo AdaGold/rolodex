@@ -14,13 +14,19 @@ render: function() {
      this.$el.html( renderedTemplate );
      return this;
 },
+renderExpanded: function() {
+     var renderedTemplateExpanded = $('#tmpl-contact-details').html();
+     var templateObject = _.template(renderedTemplateExpanded);
+     var compiledHTML = templateObject(this.model.toJSON());
+     $('#contact-details').html(compiledHTML);
+},
 events: {
      'click .contact-card': 'expandContact',
 },
-expandContact: function(event) {
-     console.log('testing123');
-     console.log($('#contact-details'));
-     $('#contact-details').toggleClass('hidden')
+expandContact: function( event ) {
+     $( '#contact-details' ).toggleClass( 'hidden' );
+     this.renderExpanded();
+     console.log(this.model);
 }
 });
 
